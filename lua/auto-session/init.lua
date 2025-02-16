@@ -573,6 +573,12 @@ function AutoSession.SaveSessionToDir(session_dir, session_name, show_message)
   local vim_session_path = Lib.escape_string_for_vim(session_path)
   vim.cmd("mks! " .. vim_session_path)
 
+  -- Write shada file, use ! so we don't read existing file first
+  if Config.save_and_restore_shada then
+    Lib.logger.debug "writing shada"
+    vim.cmd("wshada! " .. vim_session_path .. ".shada")
+  end
+
   save_extra_cmds_new(session_path)
 
   AutoSession.run_cmds "post_save"
@@ -708,17 +714,25 @@ function AutoSession.RestoreSessionFile(session_path, opts)
   -- safer to have our own flag as well, in case the vim flag changes
   AutoSession.restore_in_progress = true
 
-  -- Clear the buffers and jumps
-  vim.cmd "silent %bw!"
-  vim.cmd "silent clearjumps"
+  local prepare_for_restore = function()
+    -- Clear the buffers and jumps
+    vim.cmd "silent %bw!"
+    vim.cmd "silent clearjumps"
 
+    -- Read shada (if enabled)
+    if Config.save_and_restore_shada and vim.fn.filereadable(session_path .. ".shada") == 1 then
+      Lib.logger.debug "reading shada"
+      vim.cmd("rshada! " .. vim_session_path .. ".shada")
+    end
+  end
+
+  prepare_for_restore()
   ---@diagnostic disable-next-line: param-type-mismatch
   local success, result = pcall(vim.cmd, "silent " .. cmd)
 
   -- normal restore failed, source again but with silent! to restore as much as possible
   if not success and Config.continue_restore_on_error then
-    vim.cmd "silent %bw!"
-    vim.cmd "silent clearjumps"
+    prepare_for_restore()
 
     -- don't capture return values as we'll use success and result from the first call
     ---@diagnostic disable-next-line: param-type-mismatch
@@ -823,6 +837,13 @@ function AutoSession.DeleteSessionFile(session_path, session_name)
   if vim.fn.filereadable(extra_commands_path) == 1 and not Lib.is_session_file(extra_commands_path) then
     vim.fn.delete(extra_commands_path)
     Lib.logger.debug("DeleteSessionFile deleting extra user commands: " .. extra_commands_path)
+  end
+
+  -- check for shada
+  local shada_file = session_path .. ".shada"
+  if vim.fn.filereadable(shada_file) == 1 then
+    vim.fn.delete(shada_file)
+    Lib.logger.debug("DeleteSessionFile deleting shada file: " .. shada_file)
   end
 
   AutoSession.run_cmds "post_delete"

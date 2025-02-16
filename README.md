@@ -74,6 +74,7 @@ Here are the default settings:
   show_auto_restore_notif = false, -- Whether to show a notification when auto-restoring
   cwd_change_handling = false, -- Follow cwd changes, saving a session before change and restoring after
   lsp_stop_on_restore = false, -- Should language servers be stopped when restoring a session. Can also be a function that will be called if set. Not called on autorestore from startup
+  save_and_restore_shada = false, -- boolean Should ShaDa (command line/search history, registers, marks, global variables, etc) be saved and restored
   log_level = "error", -- Sets the log level of the plugin (debug, info, warn, error).
 
   session_lens = {

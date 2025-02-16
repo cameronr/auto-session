@@ -389,8 +389,13 @@ function Lib.is_session_file(session_path)
     return false
   end
 
+  -- -- if it's a file that ends in .vim.shada, don't include it
+  if string.find(session_path, "%.vim%.shada$") then
+    return false
+  end
+
   -- if it's a file that doesn't end in x.vim, include
-  if not string.find(session_path, "x.vim$") then
+  if not string.find(session_path, "x%.vim$") then
     return true
   end
 
@@ -642,14 +647,15 @@ function Lib.get_session_list(sessions_dir)
   end
 
   local entries = Lib.sorted_readdir(sessions_dir)
+  -- filter non-session files here to avoid nils in the table so
+  -- it works with both snacks and telescope
+  local filtered_entries = vim.tbl_filter(function(entry)
+    return Lib.is_session_file(sessions_dir .. entry)
+  end, entries)
 
   return vim.tbl_map(function(file_name)
     local session_name
     local display_name_component
-
-    if not Lib.is_session_file(sessions_dir .. file_name) then
-      return nil
-    end
 
     -- an annotation about the session, added to display_name after any path processing
     local annotation = ""
@@ -678,7 +684,7 @@ function Lib.get_session_list(sessions_dir)
       file_name = file_name,
       path = sessions_dir .. file_name,
     }
-  end, entries)
+  end, filtered_entries)
 end
 
 ---Get the name of the altnernate session stored in the session control file

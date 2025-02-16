@@ -27,6 +27,7 @@ local M = {}
 ---@field log_level? string|integer "debug", "info", "warn", "error" or vim.log.levels.DEBUG, vim.log.levels.INFO, vim.log.levels.WARN, vim.log.levels.ERROR
 ---@field cwd_change_handling? boolean Follow cwd changes, saving a session before change and restoring after
 ---@field lsp_stop_on_restore? boolean|function Should language servers be stopped when restoring a session. Can also be a function that will be called if set. Not called on autorestore from startup
+---@field save_and_restore_shada? boolean Should ShaDa (command line/search history, registers, marks, global variables, etc) be saved and restored
 ---@field session_lens? SessionLens Session lens configuration options
 ---
 ---Hooks
@@ -81,6 +82,7 @@ local defaults = {
   show_auto_restore_notif = false, -- Whether to show a notification when auto-restoring
   cwd_change_handling = false, -- Follow cwd changes, saving a session before change and restoring after
   lsp_stop_on_restore = false, -- Should language servers be stopped when restoring a session. Can also be a function that will be called if set. Not called on autorestore from startup
+  save_and_restore_shada = false, -- boolean Should ShaDa (command line/search history, registers, marks, global variables, etc) be saved and restored
   log_level = "error", -- Sets the log level of the plugin (debug, info, warn, error).
 
   ---@type SessionLens
