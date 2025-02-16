@@ -401,7 +401,7 @@ function AutoSession.autosave_and_restore(session_name)
 end
 
 local function write_to_session_control_json(session_file_name)
-  local control_dir = Config.session_lens.session_control.control_dir
+  local control_dir = Config.session_lens.session_control.control_dir or ""
   local control_file = Config.session_lens.session_control.control_filename
   session_file_name = Lib.expand(session_file_name)
 
