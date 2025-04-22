@@ -74,14 +74,17 @@ function M.start_watcher(cwd, towatch)
       return
     end
 
-    vim.schedule(function()
-      M.on_git_watch_event(cwd, current_branch)
+    Lib.debounce(
+      vim.schedule(function()
+        M.on_git_watch_event(cwd, current_branch)
 
-      -- git often (always?) replaces .git/HEAD which can change the inode being
-      -- watched so we need to stop the current watcher and start another one to
-      -- make sure we keep getting future events
-      M.start_watcher(cwd, towatch)
-    end)
+        -- git often (always?) replaces .git/HEAD which can change the inode being
+        -- watched so we need to stop the current watcher and start another one to
+        -- make sure we keep getting future events
+        M.start_watcher(cwd, towatch)
+      end),
+      100
+    )
   end)
 end
 
