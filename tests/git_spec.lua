@@ -173,6 +173,7 @@ describe("The git config", function()
   it("auto-restores after a branch change", function()
     c.auto_save = true
     c.git_auto_restore_on_branch_change = true
+    c.show_auto_restore_notif = true
 
     -- make sure we're on the main branch
     vim.fn.system "git switch -c main"
@@ -181,12 +182,13 @@ describe("The git config", function()
     vim.cmd "silent %bw"
 
     -- branch change monitoring is only turned on when we've loaded a session
-    as.RestoreSession()
+    print "******************** loading main session"
+    as.RestoreSession(nil, { show_message = true })
+    print "******************** done loadign main session"
     assert.equals("test_git (branch: main)", Lib.current_session_name(true))
 
     -- save main branch session
     assert.equals(1, vim.fn.bufexists "test.txt")
-    as.SaveSession()
 
     -- stub out on_git_watch_event so we know when the watcher is triggered
     -- we can't use post_restore_cmds because there's no session restored
@@ -199,6 +201,7 @@ describe("The git config", function()
     end)
 
     -- switch to other-branch just to set it up
+    print "switching to other-branch (shouldn't auto-restore since session for that branch doesn't exist yet)"
     vim.fn.system "git switch -c other-branch"
     vim.wait(1000, function()
       return git_watch_triggered
@@ -211,6 +214,7 @@ describe("The git config", function()
     assert.equals(1, vim.fn.bufexists "other.txt")
 
     git_watch_triggered = false
+    print "switching to back to main"
     vim.fn.system "git switch main"
     vim.wait(1000, function()
       return git_watch_triggered
@@ -223,6 +227,7 @@ describe("The git config", function()
     assert.equals(0, vim.fn.bufexists "other.txt")
 
     git_watch_triggered = false
+    print "switching to back to other-branch one last time"
     vim.fn.system "git switch other-branch"
     vim.wait(1000, function()
       return git_watch_triggered

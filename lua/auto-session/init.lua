@@ -589,7 +589,7 @@ function AutoSession.SaveSessionToDir(session_dir, session_name, show_message)
   -- session_name might be nil (e.g. when using cwd), unescape escaped_session_name instead
   Lib.logger.debug("Saved session: " .. Lib.unescape_session_name(escaped_session_name))
   if show_message == nil or show_message then
-    vim.notify("Saved session: " .. Lib.get_session_display_name(escaped_session_name))
+    print("Saved session: " .. Lib.get_session_display_name(escaped_session_name))
   end
 
   return true
@@ -773,9 +773,10 @@ function AutoSession.RestoreSessionFile(session_path, opts)
 
   local session_name = Lib.escaped_session_name_to_session_name(vim.fn.fnamemodify(session_path, ":t"))
   Lib.logger.debug("Restored session: " .. session_name)
-  if opts.show_message == nil or opts.show_message then
-    vim.notify("Restored session: " .. session_name)
-  end
+  -- if opts.show_message == nil or opts.show_message then
+  print("Restored session: " .. session_name)
+  -- vim.notify("Restored session: " .. session_name)
+  -- end
 
   if Config.git_use_branch_name and Config.git_auto_restore_on_branch_change then
     -- start watching for branch changes
