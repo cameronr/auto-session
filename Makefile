@@ -1,5 +1,5 @@
 # FIXME: Using my fork of plenary just for https://github.com/nvim-lua/plenary.nvim/pull/611
-PLENARY_URL = https://github.com/cameronr/plenary.nvim
+PLENARY_URL = https://github.com/nvim-lua/plenary.nvim
 PLENARY_DIR = .test/plenary
 PLENARY_VER = master
 
@@ -9,9 +9,9 @@ TELESCOPE_DIR = .test/telescope
 TELESCOPE_VER = 0.1.8
 
 # FIXME: Using my fork on mini.nvim just for https://github.com/echasnovski/mini.nvim/pull/1101
-MINI_URL = https://github.com/cameronr/mini.nvim
+MINI_URL = https://github.com/echasnovski/mini.nvim
 MINI_DIR = .test/mini.nvim
-MINI_VER = windows
+MINI_VER = v0.16.0
 
 PLUGINS := $(PLENARY_DIR) $(TELESCOPE_DIR) ${MINI_DIR}
 
