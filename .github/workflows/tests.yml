@@ -36,17 +36,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # For sshing in to debug GH actions
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        with:
-          detached: true
-
       - name: setup neovim
         uses: rhysd/action-setup-vim@v1
         with:
           neovim: true
           version: ${{ matrix.neovim_version }}
+
+      - name: Add nvim to PATH
+        run: echo "${{ steps.setup_nvim.outputs.executable }}" >> $GITHUB_PATH
+
+      # For sshing in to debug GH actions
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          detached: true
 
       - name: Run tests
         run: make test
