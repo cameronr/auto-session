@@ -10,7 +10,8 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    # restore_error_handler_spec.lua seems to sometimes cause a segfault or LuaJIT assertion failure on ubuntu 24.04
+    runs-on: ubuntu-22.04
     name: lint
     steps:
       - uses: actions/checkout@v4
