@@ -1,7 +1,7 @@
 # FIXME: Using my fork of plenary just for https://github.com/nvim-lua/plenary.nvim/pull/611
-PLENARY_URL = https://github.com/nvim-lua/plenary.nvim
+PLENARY_URL = https://github.com/cameronr/plenary.nvim
 PLENARY_DIR = .test/plenary
-PLENARY_VER = master
+PLENARY_VER = gha-debug
 
 # Telescope for session-lens test
 TELESCOPE_URL = https://github.com/nvim-telescope/telescope.nvim
@@ -25,12 +25,12 @@ test: plenary-tests mini-tests
 # PlenaryBustedFile, on the other hand, starts two processes per spec (one to manage running the spec and then one to actually run the spec)
 # But it's very convenient to be able to run a single spec when test/developing
 plenary-tests: $(PLUGINS)
-	nvim --clean --headless -u scripts/minimal_init.lua +"PlenaryBustedDirectory tests {minimal_init = 'scripts/minimal_init.lua', sequential=true}"
+	DEBUG_PLENARY=1 nvim --clean --headless -u scripts/minimal_init.lua +"PlenaryBustedDirectory tests {minimal_init = 'scripts/minimal_init.lua', sequential=true}"
 
 # Rule that lets you run an individual spec. Currently requires my Plenary fork above
 $(FILES): $(PLUGINS)
 	nvim --clean --headless -u scripts/minimal_init.lua +"PlenaryBustedFile $@ {minimal_init = 'scripts/minimal_init.lua'}"
-	
+
 # We use mini.test for some end to end UI testing of session lens
 mini-tests: $(PLUGINS)
 	nvim --headless --noplugin -u scripts/minimal_init_mini.lua -c "lua MiniTest.run()"
