@@ -10,8 +10,7 @@ on:
 
 jobs:
   lint:
-    # restore_error_handler_spec.lua seems to sometimes cause a segfault or LuaJIT assertion failure on ubuntu 24.04
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     name: lint
     steps:
       - uses: actions/checkout@v4
@@ -26,12 +25,13 @@ jobs:
     timeout-minutes: 4
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        # neovim_version: ["v0.7.2", "v0.9.5", "v0.10.3", "v0.11.2", "nightly"]
+        # restore_error_handler_spec.lua seems to sometimes cause a segfault or LuaJIT assertion failure on ubuntu 24.04
+        os: [ubuntu-22.04]
+        # neovim_version: ["v0.7.2", "v0.9.5", "v0.10.3", "v0.11.3", "nightly"]
         neovim_version: ["v0.9.5"]
         # include:
         #   - os: windows-latest
-        #     neovim_version: v0.11.2
+        #     neovim_version: v0.11.3
     runs-on: ${{ matrix.os }}
 
     steps:
