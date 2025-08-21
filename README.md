@@ -4,8 +4,8 @@
 
 Automatically reopen the files and windows you had open. It's like you never left!
 
-![demo](https://github.com/user-attachments/assets/8a779b99-d556-48a4-bd9f-dc88fb080a8e)
-
+<img alt="demo" src="https://github.com/user-attachments/assets/8a779b99-d556-48a4-bd9f-dc88fb080a8e" width="800">
+  
 [<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/rmagatti/auto-session/tests.yml?style=for-the-badge&label=tests">](https://github.com/rmagatti/auto-session/actions/workflows/tests.yml)
 
 <!-- panvimdoc-ignore-end -->
@@ -355,7 +355,7 @@ The following default keymaps are available when the session-lens picker is open
 
 When using Telescope, Snacks, or Fzf-Lua, you can customize the picker using `picker_opts`. Refer to the links above for the specific picker configuration options.
 
-<img src="https://github.com/rmagatti/readme-assets/blob/main/session-lens.gif" width=800 />
+<img alt ="picker" src="https://github.com/user-attachments/assets/440fc85d-c56c-4c2b-81f5-1bdeac35e8af" width="800">
 
 ## 📁 Directories
 
@@ -454,7 +454,7 @@ require("lualine").setup {
 }
 ```
 
-<img width="1032" height="676" alt="Screenshot 2025-08-21 at 12 10 10" src="https://github.com/user-attachments/assets/49b0357e-9002-4d18-8dbb-3eed4422c5f9" />
+<img width="800" height="676" alt="Screenshot 2025-08-21 at 12 10 10" src="https://github.com/user-attachments/assets/49b0357e-9002-4d18-8dbb-3eed4422c5f9" />
 
 ## 🪝 Command Hooks
 
