@@ -25,13 +25,6 @@ Table of Contents                             *auto-session-table-of-contents*
 ==============================================================================
 1. AutoSession                                      *auto-session-autosession*
 
-Automatically reopen the files and windows you had open. It’s like you never
-left!
-
-
-
-<https://github.com/rmagatti/auto-session/actions/workflows/tests.yml>
-
 
 FEATURES                                   *auto-session-autosession-features*
 
