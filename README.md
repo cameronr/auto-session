@@ -395,9 +395,7 @@ Now when you changes the cwd with `:cd some/new/dir` AutoSession handles it grac
 Hooks are available for custom actions _before_ and _after_ the `cwd` is changed. Here's the config for tracking cwd and a hook example:
 
 ```lua
-require("auto-session").setup {
-  suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-
+opts = {
   cwd_change_handling = true,
 
   pre_cwd_changed_cmds = {
@@ -418,12 +416,19 @@ To include the current git branch in the session name, set `git_use_branch_name 
 
 AutoSession can also optionally auto-restore sessions when switching branches. Set `git_auto_restore_on_branch_change = true,` to enable that. Note, if you have modified files open when the branch is switched, AutoSession will ask if you want to close those files and restore the session or cancel restoring the session. If you cancel restoring the session, auto-saving will be disabled.
 
+```lua
+opts = {
+  git_use_branch_name = true,
+  git_auto_restore_on_branch_change = true,
+}
+```
+
 ## 🖥️ Dashboards
 
 If you use a dashboard, you probably don't want to try and save a session when just the dashboard is open. To avoid that, add your dashboard filetype to the bypass list as follows:
 
 ```lua
-require("auto-session").setup {
+opts = {
   bypass_save_filetypes = { "alpha", "dashboard", "snacks_dashboard" }, -- or whatever dashboard you use
 }
 ```
@@ -471,7 +476,7 @@ Command hooks exist in the format: {hook_name}
 Each hook is a table of vim commands or lua functions (or a mix of both):
 
 ```lua
-require("auto-session").setup {
+opts = {
   -- {hook_name}_cmds = {"{hook_command1}", "{hook_command2}"}
 
   pre_save_cmds = {
