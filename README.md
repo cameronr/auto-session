@@ -38,7 +38,11 @@ return {
 }
 ```
 
-Note: For other plugin managers, make sure setup is called somewhere, e.g. `require('auto-session').setup({})`
+Note: For other plugin managers, make sure setup is called somewhere, e.g.:
+
+```lua
+require("auto-session").setup {}
+```
 
 ## ⚙️ Configuration
 
@@ -247,8 +251,8 @@ set sessionoptions+=winpos,terminal,folds
 Starting `nvim`
 
 - When starting `nvim` with no arguments, AutoSession will try to restore the session for `cwd` if one exists.
-- When starting `nvim .` (or another directory), AutoSession will try to restore the session for that directory. See [argument handling](#%EF%B8%8F-argument-handling) for more details.
-- When starting `nvim some_file.txt` (or multiple files), by default, AutoSession won't do anything. See [argument handling](#%EF%B8%8F-argument-handling) for more details.
+- When starting `nvim .` (or another directory), AutoSession will try to restore the session for that directory. See [argument handling](https://github.com/rmagatti/auto-session/wiki/Argument-Handling) for more details.
+- When starting `nvim some_file.txt` (or multiple files), by default, AutoSession won't do anything. See [argument handling](https://github.com/rmagatti/auto-session/wiki/Argument-Handling) for more details.
 - Even after starting `nvim` with a file argument, a session for `cwd` can still be manually restored by running `:SessionRestore`.
 - When piping to `nvim`, e.g: `cat myfile | nvim`, AutoSession disables itself.
 
@@ -366,7 +370,7 @@ opts = {
 
 With those options, sessions would only be auto-saved for `/some/dir` and any direct child of `/projects` (e.g. `/projects/myproject` but not `/projects/myproject/submodule`) except `/projects/secret`
 
-If you want even more fine-grained control, you can instead set `auto_create` to a function to [conditionally create a session](#auto-create).
+If you want even more fine-grained control, you can instead set `auto_create` to a function to [conditionally create a session](https://github.com/rmagatti/auto-session/wiki/Auto%E2%80%90creation-customization).
 
 ## 🚶 Directory changes
 
@@ -418,7 +422,7 @@ If you use a dashboard, you probably don't want to try and save a session when j
 
 ```lua
 require("auto-session").setup {
-  bypass_save_filetypes = { "alpha", "dashboard" }, -- or whatever dashboard you use
+  bypass_save_filetypes = { "alpha", "dashboard", "snacks_dashboard" }, -- or whatever dashboard you use
 }
 ```
 
@@ -442,6 +446,8 @@ require("lualine").setup {
   },
 }
 ```
+
+<img width="1904" alt="Screen Shot 2021-10-30 at 3 58 57 PM" src="https://user-images.githubusercontent.com/2881382/139559478-8edefdb8-8254-42e7-a0f3-babd3dfd6ff2.png">
 
 ## 🪝 Command Hooks
 
@@ -505,15 +511,13 @@ require("auto-session").setup {
 }
 ```
 
-<img width="1904" alt="Screen Shot 2021-10-30 at 3 58 57 PM" src="https://user-images.githubusercontent.com/2881382/139559478-8edefdb8-8254-42e7-a0f3-babd3dfd6ff2.png">
-
 ## Wiki
 
 See [the wiki](https://github.com/rmagatti/auto-session/wiki/) for more advanced ways to use AutoSession. And feel free to share new and interesting ways you're using AutoSession!
 
 ## 🚫 Disabling the plugin
 
-You might run into issues with Firenvim or another plugin and want to disable `auto_session` altogether based on some condition.
+You might run into issues with Firenvim or another plugin and want to disable AutoSession altogether based on some condition.
 For example, this will disable AutoSession when started under Firenvim:
 
 ```lua
