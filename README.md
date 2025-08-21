@@ -4,7 +4,7 @@
 
 Automatically reopen the files and windows you had open. It's like you never left!
 
-<img src="https://github.com/rmagatti/readme-assets/blob/main/auto-session-new-example.gif" width="800" />
+![demo](https://github.com/user-attachments/assets/8a779b99-d556-48a4-bd9f-dc88fb080a8e)
 
 [<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/rmagatti/auto-session/tests.yml?style=for-the-badge&label=tests">](https://github.com/rmagatti/auto-session/actions/workflows/tests.yml)
 
@@ -454,7 +454,7 @@ require("lualine").setup {
 }
 ```
 
-<img width="1904" alt="Screen Shot 2021-10-30 at 3 58 57 PM" src="https://user-images.githubusercontent.com/2881382/139559478-8edefdb8-8254-42e7-a0f3-babd3dfd6ff2.png">
+<img width="1032" height="676" alt="Screenshot 2025-08-21 at 12 10 10" src="https://github.com/user-attachments/assets/49b0357e-9002-4d18-8dbb-3eed4422c5f9" />
 
 ## 🪝 Command Hooks
 
