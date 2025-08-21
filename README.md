@@ -1,10 +1,13 @@
 # 🗒️ AutoSession
 
-Automatically reopen the files and windows you had open. It's like you never left!
+<!-- panvimdoc-ignore-start -->
 
+Automatically reopen the files and windows you had open. It's like you never left!
 <img src="https://github.com/rmagatti/readme-assets/blob/main/auto-session-new-example.gif" width="800" />
 
 [<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/rmagatti/auto-session/tests.yml?style=for-the-badge&label=tests">](https://github.com/rmagatti/auto-session/actions/workflows/tests.yml)
+
+<!-- panvimdoc-ignore-end -->
 
 ## ⭐ Features
 

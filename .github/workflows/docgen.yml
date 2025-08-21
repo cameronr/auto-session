@@ -30,6 +30,7 @@ jobs:
           version: "Neovim"
           demojify: true
           treesitter: true
+          shift-heading-level-by: -1
 
       - name: Commit
         uses: stefanzweifel/git-auto-commit-action@v5
