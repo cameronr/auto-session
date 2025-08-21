@@ -10,7 +10,6 @@ Table of Contents                             *auto-session-table-of-contents*
 5. Commands                                            |auto-session-commands|
 6. Details                                              |auto-session-details|
 7. Session Picker                                |auto-session-session-picker|
-  - Preview                              |auto-session-session-picker-preview|
 8. Directories                                      |auto-session-directories|
 9. Directory changes                          |auto-session-directory-changes|
 10. Git                                                     |auto-session-git|
@@ -387,9 +386,6 @@ open:
 When using Telescope, Snacks, or Fzf-Lua, you can customize the picker using
 `picker_opts`. Refer to the links above for the specific picker configuration
 options.
-
-
-PREVIEW                                  *auto-session-session-picker-preview*
 
 
 
