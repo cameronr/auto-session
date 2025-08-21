@@ -445,7 +445,7 @@ require("lualine").setup {
     theme = "tokyonight",
   },
   sections = {
-    lualine_c = {
+    lualine_x = {
       function()
         return require("auto-session.lib").current_session_name(true)
       end,
