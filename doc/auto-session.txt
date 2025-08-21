@@ -3,30 +3,27 @@
 ==============================================================================
 Table of Contents                             *auto-session-table-of-contents*
 
-1. AutoSession                                      |auto-session-autosession|
-  - Features                               |auto-session-autosession-features|
-  - How it works                       |auto-session-autosession-how-it-works|
-  - Installation                       |auto-session-autosession-installation|
-  - Configuration                     |auto-session-autosession-configuration|
-  - Commands                               |auto-session-autosession-commands|
-  - Details                                 |auto-session-autosession-details|
-  - Session Picker                   |auto-session-autosession-session-picker|
-  - Directories                         |auto-session-autosession-directories|
-  - Directory changes             |auto-session-autosession-directory-changes|
-  - Git                                         |auto-session-autosession-git|
-  - Dashboards                           |auto-session-autosession-dashboards|
-  - Statusline                           |auto-session-autosession-statusline|
-  - Command Hooks                     |auto-session-autosession-command-hooks|
-  - Wiki                                       |auto-session-autosession-wiki|
-  - Disabling the plugin       |auto-session-autosession-disabling-the-plugin|
-  - Troubleshooting                 |auto-session-autosession-troubleshooting|
-  - Compatibility                     |auto-session-autosession-compatibility|
+1. Features                                            |auto-session-features|
+2. How it works                                    |auto-session-how-it-works|
+3. Installation                                    |auto-session-installation|
+4. Configuration                                  |auto-session-configuration|
+5. Commands                                            |auto-session-commands|
+6. Details                                              |auto-session-details|
+7. Session Picker                                |auto-session-session-picker|
+  - Preview                              |auto-session-session-picker-preview|
+8. Directories                                      |auto-session-directories|
+9. Directory changes                          |auto-session-directory-changes|
+10. Git                                                     |auto-session-git|
+11. Dashboards                                       |auto-session-dashboards|
+12. Statusline                                       |auto-session-statusline|
+13. Command Hooks                                 |auto-session-command-hooks|
+14. Wiki                                                   |auto-session-wiki|
+15. Disabling the plugin                   |auto-session-disabling-the-plugin|
+16. Troubleshooting                             |auto-session-troubleshooting|
+17. Compatibility                                 |auto-session-compatibility|
 
 ==============================================================================
-1. AutoSession                                      *auto-session-autosession*
-
-
-FEATURES                                   *auto-session-autosession-features*
+1. Features                                            *auto-session-features*
 
 - Automatically save and restore sessions, with customizable filters
 - |auto-session-session-picker| works with Telescope, Snacks, Fzf-Lua, and `vim.ui.select`
@@ -36,7 +33,8 @@ FEATURES                                   *auto-session-autosession-features*
 - Save custom data along with your session
 
 
-HOW IT WORKS                           *auto-session-autosession-how-it-works*
+==============================================================================
+2. How it works                                    *auto-session-how-it-works*
 
 When you start `nvim`, AutoSession will try to restore a session for the
 current working directory (`cwd`) if it exists. If it does, it’ll reopen all
@@ -45,7 +43,8 @@ AutoSession will automatically save a session for `cwd` so you can pick up
 where you left off.
 
 
-INSTALLATION                           *auto-session-autosession-installation*
+==============================================================================
+3. Installation                                    *auto-session-installation*
 
 Lazy.nvim <https://github.com/folke/lazy.nvim>
 
@@ -71,7 +70,8 @@ Note:For other plugin managers, make sure setup is called somewhere, e.g.:
 <
 
 
-CONFIGURATION                         *auto-session-autosession-configuration*
+==============================================================================
+4. Configuration                                  *auto-session-configuration*
 
 Default settings (you don’t have to copy these into your config):
 
@@ -224,7 +224,7 @@ Types ~
 <
 
 
-RECOMMENDED SESSIONOPTIONS CONFIG
+RECOMMENDED SESSIONOPTIONS CONFIG ~
 
 For the best experience, set `sessionoptions` to:
 
@@ -241,7 +241,8 @@ For the best experience, set `sessionoptions` to:
 <
 
 
-COMMANDS                                   *auto-session-autosession-commands*
+==============================================================================
+5. Commands                                            *auto-session-commands*
 
 >viml
     :SessionSave " saves a session based on the `cwd` in `root_dir`
@@ -266,7 +267,8 @@ COMMANDS                                   *auto-session-autosession-commands*
 <
 
 
-DETAILS                                     *auto-session-autosession-details*
+==============================================================================
+6. Details                                              *auto-session-details*
 
 Starting `nvim`
 
@@ -297,7 +299,8 @@ Session naming:
 - You can also set a custom function that returns a string to include in the session name so you have different sessions for `cwd` per tmux session, window, etc.
 
 
-SESSION PICKER                       *auto-session-autosession-session-picker*
+==============================================================================
+7. Session Picker                                *auto-session-session-picker*
 
 You can use Telescope <https://github.com/nvim-telescope/telescope.nvim>,
 snacks.nvim <https://github.com/folke/snacks.nvim>, Fzf-Lua
@@ -386,12 +389,13 @@ When using Telescope, Snacks, or Fzf-Lua, you can customize the picker using
 options.
 
 
-PREVIEW ~
+PREVIEW                                  *auto-session-session-picker-preview*
 
 
 
 
-DIRECTORIES                             *auto-session-autosession-directories*
+==============================================================================
+8. Directories                                      *auto-session-directories*
 
 There are two config options, `allowed_dirs` and `suppressed_dirs`, that
 control which directories AutoSession will auto-save a session for. If
@@ -418,7 +422,8 @@ to a function to conditionally create a session
 <https://github.com/rmagatti/auto-session/wiki/Auto%E2%80%90creation-customization>.
 
 
-DIRECTORY CHANGES                 *auto-session-autosession-directory-changes*
+==============================================================================
+9. Directory changes                          *auto-session-directory-changes*
 
 AutoSession can track `cwd` changes!
 
@@ -460,7 +465,8 @@ changed. Here’s the config for tracking cwd and a hook example:
 <
 
 
-GIT                                             *auto-session-autosession-git*
+==============================================================================
+10. Git                                                     *auto-session-git*
 
 To include the current git branch in the session name, set `git_use_branch_name
 = true,` in your config
@@ -472,7 +478,8 @@ you want to close those files and restore the session or cancel restoring the
 session. If you cancel restoring the session, auto-saving will be disabled.
 
 
-DASHBOARDS                               *auto-session-autosession-dashboards*
+==============================================================================
+11. Dashboards                                       *auto-session-dashboards*
 
 If you use a dashboard, you probably don’t want to try and save a session
 when just the dashboard is open. To avoid that, add your dashboard filetype to
@@ -485,7 +492,8 @@ the bypass list as follows:
 <
 
 
-STATUSLINE                               *auto-session-autosession-statusline*
+==============================================================================
+12. Statusline                                       *auto-session-statusline*
 
 You can show the current session name in the statusline by using the function
 `current_session_name()`. With no arguments, it will return the full session
@@ -514,10 +522,11 @@ Here’s an example using Lualine
 
 
 
-COMMAND HOOKS                         *auto-session-autosession-command-hooks*
+==============================================================================
+13. Command Hooks                                 *auto-session-command-hooks*
 
 
-COMMAND HOOKS ARE A LIST OF COMMANDS OR FUNCTIONS THAT GET EXECUTED AT DIFFERENT STAGES OF THE SESSION MANAGEMENT LIFECYCLE.
+COMMAND HOOKS ARE A LIST OF COMMANDS OR FUNCTIONS THAT GET EXECUTED AT DIFFERENT STAGES OF THE SESSION MANAGEMENT LIFECYCLE. ~
 
 Command hooks exist in the format: {hook_name}
 
@@ -578,14 +587,16 @@ Each hook is a table of vim commands or lua functions (or a mix of both):
 <
 
 
-WIKI                                           *auto-session-autosession-wiki*
+==============================================================================
+14. Wiki                                                   *auto-session-wiki*
 
 See the wiki <https://github.com/rmagatti/auto-session/wiki/> for more advanced
 ways to use AutoSession. And feel free to share new and interesting ways
 you’re using AutoSession!
 
 
-DISABLING THE PLUGIN           *auto-session-autosession-disabling-the-plugin*
+==============================================================================
+15. Disabling the plugin                   *auto-session-disabling-the-plugin*
 
 You might run into issues with Firenvim or another plugin and want to disable
 AutoSession altogether based on some condition. For example, this will disable
@@ -615,7 +626,8 @@ false at startup:
 <
 
 
-TROUBLESHOOTING                     *auto-session-autosession-troubleshooting*
+==============================================================================
+16. Troubleshooting                             *auto-session-troubleshooting*
 
 First run `:checkhealth auto-session` to see if it detects any problems.
 
@@ -626,7 +638,8 @@ If that doesn’t help, you can:
 - or file an Issue <https://github.com/rmagatti/auto-session/issues>
 
 
-COMPATIBILITY                         *auto-session-autosession-compatibility*
+==============================================================================
+17. Compatibility                                 *auto-session-compatibility*
 
 Neovim >= 0.10
 
