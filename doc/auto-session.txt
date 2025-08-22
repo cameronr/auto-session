@@ -1,4 +1,4 @@
-*auto-session.txt*            For Neovim           Last change: 2025 August 21
+*auto-session.txt*            For Neovim           Last change: 2025 August 22
 
 ==============================================================================
 Table of Contents                             *auto-session-table-of-contents*
@@ -511,7 +511,7 @@ Here’s an example using Lualine
         theme = "tokyonight",
       },
       sections = {
-        lualine_c = {
+        lualine_x = {
           function()
             return require("auto-session.lib").current_session_name(true)
           end,
